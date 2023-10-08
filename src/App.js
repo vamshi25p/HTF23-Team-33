@@ -1,24 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import HeaderLoggedIn from './HeaderLoggedIn';
+import Hero from './Hero';
+import Footer from './Footer';
+import NextPage from './NextPage';
+import ProblemsPage from './ProblemsPage';
+import Login from './Login'; // Import the Login component
 
 function App() {
+  const [loggedIn, setLoggedIn] = useState(false);
+  const [username, setUsername] = useState('');
+
+  const handleLogin = (user) => {
+    setUsername(user);
+    setLoggedIn(true);
+  };
+
+  const handleLogout = () => {
+    setLoggedIn(false);
+    setUsername('');
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        {loggedIn ? (
+          <>
+            <HeaderLoggedIn username={username} onLogout={handleLogout} />
+            <Routes>
+              <Route path="/" element={<Hero />} />
+              <Route path="/nextpage" element={<NextPage />} />
+              <Route path="/problems" element={<ProblemsPage />} />
+            </Routes>
+            <Footer />
+          </>
+        ) : (
+          <Login onLogin={handleLogin} />
+        )}
+      </div>
+    </Router>
   );
 }
 

@@ -1,0 +1,42 @@
+/* In your CSS file */
+.subtopics {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.subtopic-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.subtopic-button {
+  background-color: #f0f0f0;
+  color: #333;
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-right: 10px;
+  margin-left: 10px;
+}
+
+.subtopic-button.active {
+  background-color: #007bff;
+  color: #fff;
+}
+div.Problem {
+  margin-left: 20px;
+}
+
+.leet {
+  width: 50px;
+}
+
+.code {
+  text-align: center;
+}
+/* ProgressBar.css */
+
+/* Progress bar container */
