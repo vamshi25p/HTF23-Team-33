@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLink } from '@fortawesome/free-solid-svg-icons';
 import './ProblemsPage.css';
@@ -10,7 +9,6 @@ function ProblemsPage() {
         window.scrollTo(0, 0);
       }, []);
   const [selectedSubtopic, setSelectedSubtopic] = useState(null);
-  const [problems, setProblems] = useState([]); // Store problem data
   const [completionStatus, setCompletionStatus] = useState({}); // Store completion status
   const [subtopicCompletion, setSubtopicCompletion] = useState(0);
   const [overallCompletion, setOverallCompletion] = useState(0);
@@ -197,10 +195,13 @@ function ProblemsPage() {
     setOverallCompletion(overallProgress);
   };
 
-  useEffect(() => {
-    calculateSubtopicCompletion();
-    calculateOverallCompletion();
-  }, [selectedSubtopic, completionStatus]);
+  /* eslint-disable react-hooks/exhaustive-deps */
+useEffect(() => {
+  calculateSubtopicCompletion();
+  calculateOverallCompletion();
+}, [selectedSubtopic, completionStatus]);
+/* eslint-enable react-hooks/exhaustive-deps */
+
 
   // Generate problems list based on selected subtopic
   const renderProblemsList = () => {
